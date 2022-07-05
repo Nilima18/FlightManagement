@@ -54,6 +54,11 @@ public class Airline {
 	public Airline() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "Airline [id=" + id + ", airlineName=" + airlineName + ", contact=" + contact + ", status=" + status
+				+ "]";
+	}
 	
 	
 

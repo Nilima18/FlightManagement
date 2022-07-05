@@ -1,10 +1,9 @@
 package com.flightapp.services;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,7 @@ import com.flightapp.entity.BookingModel;
 import com.flightapp.entity.BookingRecord;
 import com.flightapp.entity.BookingStatus;
 import com.flightapp.entity.Flight;
-import com.flightapp.entity.FlightModel;
-import com.flightapp.entity.Inventory;
 import com.flightapp.entity.Passenger;
-import com.flightapp.entity.SearchQuery;
 import com.flightapp.exceptions.BookingException;
 import com.flightapp.exceptions.BookingNotFoundException;
 import com.flightapp.repositories.BookingRepository;
@@ -90,6 +86,16 @@ public class BookingService {
 		
 	}
 	
+	//getting all booking records-admin
+	
+	public List<BookingRecord> getAllBookings(){
+		return bookingRepo.findAll();
+		}
+	
 	//cancel booking
+	
+	public void deleteBookingBypnr(long pnr) {
+		bookingRepo.deleteById(pnr);
+	}
 	
 }

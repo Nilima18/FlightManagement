@@ -31,12 +31,11 @@ public interface FlightDataRepository extends JpaRepository<FlightData, Integer>
 			@Param("source") String source,
 			@Param("flightdate") String flightdate);
 
-//	@Query(value ="select * "
-//			+ "from flight_data f where "
-//			+ "f.arrival_city = :destination and "
-//			+ "f.departure_city =:source and "
-//			+ "f.departure_time =:flightdate", nativeQuery = true)
-//	List<FlightData> searchFlightByOriginDestinationAndDate(@Param("destination") String destination ,
-//			@Param("source") String source,
-//			@Param("flightdate") String flightdate);
+	@Query(value ="select * "
+			+ "from flight_data f where "
+			+ "f.arrival_city = :destination and "
+			+ "f.departure_city =:source"
+			, nativeQuery = true)
+	List<FlightData> searchFlightByOriginDestination(@Param("destination") String destination ,
+			@Param("source") String source);
 }

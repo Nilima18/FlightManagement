@@ -2,12 +2,21 @@ package com.flightapp.entity;
 
 public class Flight {
 	
+	 int id;
 	 String flight_number;
 	 String arrival_city;
 	 String airline_name;
 	 String departure_city;
 	 String departure_time;
 	 double price;
+	 
+	 
+	 public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
 	public String getFlight_number() {
 		return flight_number;
 	}
@@ -44,9 +53,17 @@ public class Flight {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Flight(String flight_number, String arrival_city, String airline_name, String departure_city,
+	
+	@Override
+	public String toString() {
+		return "Flight [id=" + id + ", flight_number=" + flight_number + ", arrival_city=" + arrival_city
+				+ ", airline_name=" + airline_name + ", departure_city=" + departure_city + ", departure_time="
+				+ departure_time + ", price=" + price + "]";
+	}
+	public Flight(int id, String flight_number, String arrival_city, String airline_name, String departure_city,
 			String departure_time, double price) {
 		super();
+		this.id = id;
 		this.flight_number = flight_number;
 		this.arrival_city = arrival_city;
 		this.airline_name = airline_name;

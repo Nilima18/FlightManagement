@@ -1,7 +1,20 @@
 package com.flightapp.security.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.flightapp.security.model.JwtRequest;
+import com.flightapp.security.model.JwtResponse;
+import com.flightapp.security.service.JwtUserDetailsService;
+import com.flightapp.security.utils.JwtTokenUtil;
 
 @RestController
 public class JwtAuthenticationController {

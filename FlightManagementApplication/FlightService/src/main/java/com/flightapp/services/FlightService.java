@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.flightapp.entity.Airline;
 import com.flightapp.entity.Flight;
 import com.flightapp.entity.FlightData;
 import com.flightapp.entity.SearchQuery;
 import com.flightapp.exceptions.FlightNotFoundException;
+import com.flightapp.repositories.AirlineRepository;
 import com.flightapp.repositories.FlightDataRepository;
 
 
@@ -23,6 +25,26 @@ public class FlightService {
 	private FlightDataRepository flightDataRepository;
 	
 	
+	@Autowired
+	private AirlineRepository airlineRepository;
+	
+	
+	public Airline createAirline(Airline airline) {
+		return airlineRepository.save(airline);
+	}
+	
+	public List<Airline> getAllAirlines(){
+		return airlineRepository.findAll();
+		}
+	
+	public Airline updateAirlineById(Airline airline) {
+		return airlineRepository.save(airline);
+		
+	}
+	
+	public void removeAirline(int id) {
+		airlineRepository.deleteById(id);
+	}
 	
 	
 	public FlightData addNewFlight(FlightData flightdata) {
@@ -54,22 +76,44 @@ public class FlightService {
 		return flightDataRepository.save(flightData);
 	}
 	
+
 	
-//	public List<FlightData> searchFlights(SearchQuery query){
-//		List<FlightData> flights= flightDataRepository.searchFlightByOriginDestinationAndDate( query.getDestination(),query.getSource(),query.getFlightdate());
-//		List<Flight> flight= new ArrayList<>();
-//		
-//		return flights;
-//	}
+	public List<Flight> searchFlightByOriginDestination(String destination,String source){
+		List<Airline> blockedAirlines = airlineRepository.getBlockedAirlines();
+
+		List<FlightData> flights= flightDataRepository.searchFlightByOriginDestination(destination, source);
+		List<Flight> resultflights =new ArrayList<>();
+		
+		for (FlightData f: flights) {
+			Flight flight = new Flight();
+			flight.setId(f.getId());
+			flight.setFlight_number(f.getFlightNumber());
+			flight.setAirline_name(f.getAirlineName());
+			flight.setArrival_city(f.getArrivalCity());
+			flight.setDeparture_city(f.getDepartureCity());
+			flight.setDeparture_time(f.getDepartureTime());
+			flight.setPrice(f.getPrice());
+			resultflights.add(flight);
+			for (Airline a : blockedAirlines) {
+				if(a.getAirlineName().equals(flight.getAirline_name())) {
+					resultflights.remove(flight);
+				}
+			}
+			
+					}
+				return resultflights;
+		}
+
+
 	
-	
-	
-	
-	public List<Flight> searchFlights(SearchQuery query){
+
+	public List<Flight> searchFlights(SearchQuery query) {
 		List<FlightData> flights= flightDataRepository.searchFlightByOriginDestinationAndDate( query.getDestination(),query.getSource(),query.getFlightdate());
 		List<Flight> resultflight =new ArrayList<>();
-		Flight flight = new Flight();
+		
 		for (FlightData f: flights) {
+			Flight flight = new Flight();
+			flight.setId(f.getId());
 			flight.setFlight_number(f.getFlightNumber());
 			flight.setAirline_name(f.getAirlineName());
 			flight.setArrival_city(f.getArrivalCity());
@@ -77,10 +121,19 @@ public class FlightService {
 			flight.setDeparture_time(f.getDepartureTime());
 			flight.setPrice(f.getPrice());
 			resultflight.add(flight);
-			
-		}   
+		}
 		
-		return resultflight;
-	}
+			return resultflight;
+		}
+	
+//	public List<Airline> blockedAilrines(){
+//		List<Airline> blockedAirlines = airlineRepository.getBlockedAirlines();
+//		return blockedAirlines;
+//	}
 
+			
+			
+
+	
+	
 }
