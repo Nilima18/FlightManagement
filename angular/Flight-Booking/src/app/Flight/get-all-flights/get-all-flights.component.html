@@ -1,0 +1,54 @@
+<p>get-all-flights works!</p>
+<div class="container">
+    <div class="card">
+        <div class="card -body">
+            <h3>Flight list</h3>
+           
+            
+<div *ngIf="flights.length > 0;else showButton">
+            <table class="table table-stripped" style="width: 80%" border="1">
+                <thead>
+                    <th>Id</th>
+                    <th>Flight Number</th>
+                    <th>Airline Name</th>
+                    <th>Arrival city</th>
+                    <th>Departure City</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Time</th>
+                    <th>Price</th>
+                    <th>Seats</th>
+                    <th>Instrument</th>
+                    <th>Meal</th>
+                    <th>Days</th>
+                </thead>
+<tbody>
+    <tr *ngFor ="let flight of flights">
+        <td>{{flight.id}}</td>
+        <td>{{flight.flightNumber}}</td>
+        <td>{{flight.airlineName}}</td>
+        <td>{{flight.arrivalCity}}</td>
+        <td>{{flight.departureCity}}</td>
+        <td>{{flight.arrivalTime}}</td>
+        <td>{{flight.departureTime}}</td>
+        <td>{{flight.price}}</td>
+        <td>{{flight.seats}}</td>
+        <td>{{flight.instrument}}</td>
+        <td>{{flight.meal}}</td>
+        <td>{{flight.days}}</td>
+
+
+    </tr>
+</tbody>
+            </table>
+        </div>
+        <ng-template #showButton>
+            <button class="btn btn-primary" (click)="getAllFlights()">
+                Load Flights
+            </button>
+
+        </ng-template>
+      
+    </div>
+</div>
+<router-outlet></router-outlet>
+

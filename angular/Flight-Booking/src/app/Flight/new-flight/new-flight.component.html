@@ -1,0 +1,118 @@
+
+
+<div class="container">
+
+  <h1>Add New Flight Details</h1>
+
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group" >
+
+          <label for="flightNumber">Flight Number</label><br>
+
+          <input type="text" name="flightNumber" formControlName="flightNumber" class = "form-control" ngModel>
+
+      </div>
+
+      <pre></pre>
+
+      <div class="form-group">
+
+          <label for="airlineName">Airline Name</label><br>
+
+          <input type="text" name="airlineName" formControlName="airlineName" class = "form-control"    ngModel>
+
+      </div>
+
+      <pre></pre>
+
+      <div class="form-group">
+
+          <label for="arrivalCity">Arrival City</label><br>
+
+          <input type="text" name="arrivalCity" formControlName="arrivalCity" class = "form-control" ngModel>
+
+      </div>
+
+      <pre></pre>
+
+      <div class="form-group">
+
+          <label for="departureCity">Departure City</label><br>
+
+          <input type="text" name="departureCity" formControlName="departureCity" class = "form-control" ngModel>
+
+      </div>
+
+      <pre></pre>
+     
+    <div class="form-group">
+
+      <label for="arrivalTime">Arrival Time</label><br>
+
+      <input type="text" name="arrivalTime" formControlName="arrivalTime" class = "form-control" ngModel>
+
+  </div>
+  <pre></pre>
+      <div class="form-group">
+
+        <label for="departureTime">Departure time</label><br>
+
+        <input type="text" name="departureTime" formControlName="departureTime" class = "form-control" ngModel>
+
+    </div>
+
+  <pre></pre>
+  <div class="form-group">
+
+    <label for="price">Price</label><br>
+
+    <input type="number" name="price" formControlName="price" class = "form-control" ngModel>
+
+</div>
+
+<pre></pre>
+<div class="form-group">
+
+  <label for="seats">No of Seats</label><br>
+
+  <input type="number" name="seats" formControlName="seats" class = "form-control" ngModel>
+
+</div>
+
+<pre></pre>
+<div class="form-group">
+
+  <label for="instrument">Instrument</label><br>
+
+  <input type="text" name="instrument" formControlName="instrument" class = "form-control" ngModel>
+
+</div>
+
+<pre></pre>
+<div class="form-group">
+
+  <label for="meal">Meal</label><br>
+
+  <input type="text" name="meal" formControlName="meal" class = "form-control" ngModel>
+
+</div>
+
+<pre></pre>
+<div class="form-group">
+
+  <label for="days">Days</label><br>
+
+  <input type="text" name="days" formControlName="days" class = "form-control" ngModel>
+
+</div>
+
+<pre></pre>
+
+
+      <button class="btn btn-primary" type="submit">Submit</button>
+
+  </form>
+
+</div>
+<router-outlet></router-outlet>

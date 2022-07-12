@@ -1,0 +1,43 @@
+<h1>Search Flights</h1>
+<div class="container">
+    <div class="card">
+        <div class="card -body">
+
+<mark >
+    Arrival City : <input [value]="destination" placeholder="Enter departure city" #element/>
+    Departure City : <input  [value]="source" placeholder="Enter arrival city" #element1/>
+<br>
+    <button (click)="getFlights(element.value,element1.value)">Search</button>
+
+</mark>
+<div *ngIf="flights.length > 0">
+    <table class="table table-stripped" style="width: 80%" border="1">
+        <thead>
+            <th>Id</th>
+            <th>Flight Number</th>
+            <th>Airline Name</th>
+            <th>Arrival city</th>
+            <th>Departure City</th>
+            <th>Departure Time</th>
+            <th>Price</th>
+            <th>Book Flight</th>
+        </thead>
+<tbody>
+<tr *ngFor ="let flight of flights">
+<td>{{flight.id}}</td>
+<td>{{flight.flight_number}}</td>
+<td>{{flight.airline_name}}</td>
+<td>{{flight.arrival_city}}</td>
+<td>{{flight.departure_city}}</td>
+<td>{{flight.departure_time}}</td>
+<td>{{flight.price}}</td>
+<button>Book</button>
+</tr>
+
+</tbody>
+ </table>
+ </div>
+               
+</div>
+</div>
+</div>

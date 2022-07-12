@@ -1,0 +1,26 @@
+<div>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="airlineName">Name:</label>
+          <input type="text" formControlName="airlineName" placeholder="airline Name" name="airlineName" class="form-control"
+                 id="airlineName">
+        </div>
+        <br/>
+    
+        <div class="form-group">
+          <label for="contact">Contact:</label>
+          <input type="contact" formControlName="contact" placeholder="contact" name="contact" class="form-control"
+                 id="contact">
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="status" formControlName="status" placeholder="status" name="status" class="form-control"
+                   id="status">
+          </div>
+    
+        <br/>
+        <button class="btn btn-success">Register</button>
+      </form>
+    </div>
+    <router-outlet></router-outlet>
+

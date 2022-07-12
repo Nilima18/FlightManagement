@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="card">
+        <div class="card -body">
+            <h3>Airlines list</h3>
+           
+            
+<div *ngIf="airlines.length >0;else showButton">
+            <table class="table table-stripped" style="width: 80%" border="1">
+                <thead>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>contact</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                </thead>
+<tbody>
+    <tr *ngFor ="let airline of airlines">
+        <td>{{airline.id}}</td>
+        <td>{{airline.airlineName}}</td>
+        <td>{{airline.contact}}</td>
+        <td>{{airline.status}}</td>
+        
+        <button ><a routerLink="update-airline"></a>Update</button>
+
+    </tr>
+</tbody>
+            </table>
+        </div>
+        <ng-template #showButton>
+            <button class="btn btn-primary" (click)="getAllAirlines()">
+                Load Airline
+            </button>
+
+        </ng-template>
+      
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="card">
+        <div class="card -body">
+            <h3>Airlines Details</h3>
+           
+            
+<div *ngIf="airline.length >0">
+            <table class="table table-stripped" style="width: 80%" border="1">
+                <thead>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>contact</th>
+                    <th>Status</th>
+    
+                </thead>
+<tbody>
+    <tr *ngFor ="let airline">
+        <td>{{airline.id}}</td>
+        <td>{{airline.airlineName}}</td>
+        <td>{{airline.contact}}</td>
+        <td>{{airline.status}}</td>
+       
+
+    </tr>
+</tbody>
+            </table>
+        </div>
+        <ng-template #showButton>
+            <button class="btn btn-success" (click)="updateAirlineStatus(airline)">
+                Update 
+            </button>
+
+        </ng-template>
+      
+    </div>
+</div>
+
