@@ -3,7 +3,8 @@ package com.flightapp.services;
 
 import java.util.Date;
 import java.util.List;
-
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,7 @@ public class BookingService {
 	//http://localhost:8082/flight/
 	public long bookTicket(int flightid,BookingModel model) throws BookingException {
 		 BookingRecord record=new BookingRecord();
-		 Flight flight=restTemplate.getForObject("http://localhost:8082/flight/"+flightid, Flight.class);
+		 Flight flight=restTemplate.getForObject("http://localhost:8083/flight/"+flightid, Flight.class);
 		 
 			if(flight.getSeats()<(model.getPassenger().size())) {
 				throw new BookingException("No seats available");
@@ -63,11 +64,15 @@ public class BookingService {
 			record.setNoOfSeat(model.getNoOfSeat());
 			record.setTotal_amount(model.getNoOfSeat()*flight.getPrice());
 			List<Passenger> passengers =model.getPassenger();
-		passengers.forEach(passenger -> passengerRepo.save(passenger));
-		record.setPassengers(passengers);
+		passengers.forEach(passenger -> passengerRepo.saveAndFlush(passenger));
+		//passengers.forEach(passenger -> record.setPassengers(passengers));
+		
+		
+	record.getPassengers().addAll(passengers);
+//		record.setPassengers(passengers);
 		record.setBookingDate(new Date());
 		record.setStatus(BookingStatus.BOOKING_CONFIRMED);
-			long pnr =bookingRepo.save(record).getPnr();
+		long pnr =bookingRepo.save(record).getPnr();
 			return pnr;
 	
 		
@@ -76,8 +81,13 @@ public class BookingService {
 	
 	//Getting booking details by pnr
 	public BookingRecord getBooking(long pnr) throws BookingNotFoundException {
+		BookingRecord records= bookingRepo.findById(pnr);
+	//	List<Passenger> passengers=passengerRepo.findAll();
+//		System.out.println(passengers);
+	//	records.setPassengers(passengers);
 		
-		return bookingRepo.findById(pnr).orElseThrow(()-> new BookingNotFoundException("Booking Not available for given PNR " + pnr));
+		
+		return records;
 	}
 	
 	//Getting booking records by email id
@@ -93,6 +103,18 @@ public class BookingService {
 		}
 	
 	//cancel booking
+	
+	
+	public String cancelBookingBypnr(long pnr) {
+	BookingRecord record1= bookingRepo.getById(pnr);
+	
+	record1.setStatus(BookingStatus.BOOKING_CANCELLED);
+	//System.out.println(record1);
+	bookingRepo.save(record1);
+	//System.out.println(record1);
+	return "Booking cancelled for pnr " + pnr;
+	}
+	
 	
 	public void deleteBookingBypnr(long pnr) {
 		bookingRepo.deleteById(pnr);

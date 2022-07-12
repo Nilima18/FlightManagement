@@ -26,7 +26,7 @@ public class Passenger {
 	
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch =FetchType.EAGER)
 	private BookingRecord bookingRecord;
 
 	public long getId() {
@@ -77,14 +77,14 @@ public class Passenger {
 		this.bookingRecord = bookingRecord;
 	}
 
-	public Passenger( String name, int age, String gender, int seatNo, BookingRecord bookingRecord) {
+	public Passenger( String name, int age, String gender, int seatNo) {
 		super();
 		
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
 		this.seatNo = seatNo;
-		this.bookingRecord = bookingRecord;
+		;
 	}
 
 	public Passenger() {
@@ -94,8 +94,9 @@ public class Passenger {
 	@Override
 	public String toString() {
 		return "Passenger [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", seatNo=" + seatNo
-				+ ", bookingRecord=" + bookingRecord + "]";
+				+ "]";
 	}
+
 	
 
 	

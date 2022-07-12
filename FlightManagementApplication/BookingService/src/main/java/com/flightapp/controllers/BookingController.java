@@ -1,6 +1,7 @@
 package com.flightapp.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -8,10 +9,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +29,7 @@ import com.flightapp.exceptions.BookingException;
 import com.flightapp.exceptions.BookingNotFoundException;
 import com.flightapp.services.BookingService;
 
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
@@ -58,7 +62,7 @@ public class BookingController {
 		return bookingService.getBooking(pnr);
 	}
 	
-	@GetMapping()
+	@GetMapping("/viewHistory")
 	public List<BookingRecord> getBookingByEmail(@RequestParam ("email") String email) {
 		return bookingService.getBookingByEmail(email);
 		
@@ -69,11 +73,16 @@ public class BookingController {
 		return bookingService.getAllBookings();
 		}
 	
-	@DeleteMapping("/{pnr}")
-	public void cancelBooking(@PathVariable long pnr) {
-		 bookingService.deleteBookingBypnr(pnr);
+//	@DeleteMapping("/cancel/{pnr}")
+//	public void cancelBooking(@PathVariable long pnr) {
+//		 bookingService.deleteBookingBypnr(pnr);
+//	}
+//	
+	@PutMapping("/cancel/{pnr}")
+	public String cancelBookingBypnr(@PathVariable long pnr) {
+		
+	return bookingService.cancelBookingBypnr( pnr);
 	}
-	
 	
 //	@GetMapping("/{flightId}")
 //	public Flight getFlightById(@PathVariable int flightId ) {

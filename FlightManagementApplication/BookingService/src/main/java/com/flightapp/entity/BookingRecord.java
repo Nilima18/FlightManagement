@@ -3,7 +3,7 @@ package com.flightapp.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,11 +14,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name ="booking_record")
 public class BookingRecord {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@Id
+//	@GeneratedValue(generator ="UUID")
+//	@GenericGenerator(name ="UUID",strategy ="org.hibernate.id.UUIDGenerator")
 	long pnr;
 	private String name;
 	private String email;
@@ -30,6 +35,14 @@ public class BookingRecord {
 	private Date bookingDate;
 	private String meal;
 	private int noOfSeat;
+	private double total_amount;
+	private String status;
+	
+	//bookingrecord
+	@OneToMany(fetch =FetchType.EAGER ,mappedBy="bookingRecord")
+	List<Passenger> passengers = new ArrayList<>();
+
+	
 	
 	public int getNoOfSeat() {
 		return noOfSeat;
@@ -38,12 +51,6 @@ public class BookingRecord {
 	public void setNoOfSeat(int noOfSeat) {
 		this.noOfSeat = noOfSeat;
 	}
-
-
-
-	private double total_amount;
-	private String status;
-	
 	
 	public String getName() {
 		return name;
@@ -79,11 +86,14 @@ public class BookingRecord {
 
 	
 	
-	@OneToMany(fetch =FetchType.EAGER , cascade=CascadeType.ALL ,mappedBy="bookingRecord")
-	List<Passenger> passengers = new ArrayList<>();
-
+	
 	public BookingRecord() {
 		super();
+	}
+
+
+	public String getFlightNumber() {
+		return flightNumber;
 	}
 
 	public long getPnr() {
@@ -92,10 +102,6 @@ public class BookingRecord {
 
 	public void setPnr(long pnr) {
 		this.pnr = pnr;
-	}
-
-	public String getFlightNumber() {
-		return flightNumber;
 	}
 
 	public void setFlightNumber(String flightNumber) {
@@ -159,18 +165,10 @@ public class BookingRecord {
 	}
 
 	
-	@Override
-	public String toString() {
-		return "BookingRecord [pnr=" + pnr + ", name=" + name + ", email=" + email + ", flightNumber=" + flightNumber
-				+ ", airlineName=" + airlineName + ", source=" + source + ", destination=" + destination
-				+ ", flightDate=" + flightDate + ", bookingDate=" + bookingDate + ", meal=" + meal + ", noOfSeat="
-				+ noOfSeat + ", total_amount=" + total_amount + ", status=" + status + ", passengers=" + passengers
-				+ "]";
-	}
 
 	public BookingRecord(long pnr, String name, String email, String flightNumber, String airlineName, String source,
 			String destination, String flightDate, Date bookingDate, String meal, int noOfSeat, double total_amount,
-			String status, List<Passenger> passengers) {
+			String status, ArrayList<Passenger> passengers) {
 		super();
 		this.pnr = pnr;
 		this.name = name;
@@ -186,6 +184,15 @@ public class BookingRecord {
 		this.total_amount = total_amount;
 		this.status = status;
 		this.passengers = passengers;
+	}
+
+	@Override
+	public String toString() {
+		return "BookingRecord [pnr=" + pnr + ", name=" + name + ", email=" + email + ", flightNumber=" + flightNumber
+				+ ", airlineName=" + airlineName + ", source=" + source + ", destination=" + destination
+				+ ", flightDate=" + flightDate + ", bookingDate=" + bookingDate + ", meal=" + meal + ", noOfSeat="
+				+ noOfSeat + ", total_amount=" + total_amount + ", status=" + status + ", passengers=" + passengers
+				+ "]";
 	}
 
 

@@ -61,5 +61,5 @@ public class BookingModel {
 		return "BookingModel [name=" + name + ", email=" + email + ", noOfSeat=" + noOfSeat + ", passenger=" + passenger
 				+ ", meal=" + meal + "]";
 	}
-
+	
 }

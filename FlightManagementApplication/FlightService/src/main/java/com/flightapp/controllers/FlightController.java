@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,13 +32,12 @@ import com.flightapp.exceptions.FlightNotFoundException;
 import com.flightapp.services.FlightService;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class FlightController {
 	
 	@Autowired
 	private FlightService flightService;
-	
-	
-	
+
 	
 	@PostMapping("/airline/register")
 	public Airline registerNewAirline(@RequestBody Airline airline) {
@@ -105,8 +105,13 @@ public class FlightController {
 		flightService.removeFlightById(flightid);
 	}
 	
-	@GetMapping("/flight")
-	public List<Flight> getFlightsByDestinationAndSource(@RequestParam("destination") String destination ,@RequestParam("source")  String source) {
+//	@GetMapping("/flight")
+//	public List<Flight> getFlightsByDestinationAndSource(@RequestParam("destination") String destination ,@RequestParam("source")  String source) {
+//		return flightService.searchFlightByOriginDestination(destination, source);
+//		
+//	}
+	@GetMapping("/flight/{destination}/{source}")
+	public List<Flight> getFlightsByDestinationAndSource(@PathVariable String destination ,@PathVariable  String source) {
 		return flightService.searchFlightByOriginDestination(destination, source);
 		
 	}
