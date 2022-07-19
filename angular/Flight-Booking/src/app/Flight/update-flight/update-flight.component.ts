@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateFlightComponent implements OnInit {
 
+  flight:any
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  updateFlight(flight:any){
+
+  }
 }

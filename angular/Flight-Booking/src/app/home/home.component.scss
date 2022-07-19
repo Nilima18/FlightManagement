@@ -1,14 +1,17 @@
-div{
-    
-    h1{
-        color: rgb(61, 15, 15);
-    }
-    mark{
-        li{
-            background-color: rgb(95, 51, 199);
-            color: rgb(87, 14, 14);
-        }
-    }
-
-    background-color: rgb(95, 51, 199);
+h1{
+    div{
+   color: antiquewhite;
+   font-family: 'Times New Roman', Times, serif;
+   background-color:rgb(130, 182, 196) ;
 }
+}
+
+button{
+    padding: 10px 5px;
+    margin: 5px,10px;
+    color: rgb(10, 9, 9);
+    background-color:azure ;
+    border-color: black;
+    border-bottom-right-radius: 10px;
+}
+

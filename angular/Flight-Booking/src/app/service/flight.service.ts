@@ -16,11 +16,16 @@ export class FlightService {
   }
 
   getAllFlights(){
-    return this.Http.get("http://localhost:8083/flight/allFlights");
+    return this.Http.get("http://65.1.65.7:8083/flight/allFlights");
   }
 
   addNewFlightDetails(flight:any){
-    return this.Http.post("http://localhost:8083/flight/addNewFlight" ,flight);
+    return this.Http.post("http://65.1.65.7:8083/flight/addNewFlight" ,flight);
+  }
+
+  updateFlightDetails(flight:any){
+    return this.Http.put("http://localhost:8083/flight/addNewFlight" ,flight);
+
   }
 
 }

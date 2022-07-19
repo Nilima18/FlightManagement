@@ -1,1 +1,17 @@
-<p>cancel-booking works!</p>
+<h1>Cancel Booking</h1>
+<div class="container">
+    <div class="card">
+        <div class="card -body">
+
+<mark >
+    PNR no : <input [value]="pnr" placeholder="Enter PNR no." #element/>
+    <br>
+    <br>
+    <button class ="btn btn-primary" (click)="cancelBookingByPnr(element.value)">Cancel Ticket</button>
+
+</mark>
+</div>
+</div>
+</div>
+<router-outlet></router-outlet>
+

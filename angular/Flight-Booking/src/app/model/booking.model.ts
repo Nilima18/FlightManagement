@@ -1,11 +1,11 @@
 export class Booking{
-    constructor(
-    public pnr:number,
-    public name:string,
-    public departure_date:Date,
-    public booking_date:Date,
+    
+    public name:string="";
+    public email:string="";
+    public noOfSeats:number=0;
+    public meal:string="";
    
-    public passenger:Array<{ passenger_id:Number,passenger_name:String,passenger_age:Number,passenger_seat:Number,amount:Number}>,
-    )
-     {}
+    public passengers:Array<{name: String; age: Number; seatNo: Number; gender:string }> =[];
+    
+     
  }

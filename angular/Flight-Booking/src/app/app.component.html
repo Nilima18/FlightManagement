@@ -1,3 +1,27 @@
-<app-home></app-home>
-
-<router-outlet></router-outlet>
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+    
+        <h1>Welcome</h1>
+    
+    </div>
+    
+    <div>
+        <li>
+        
+            <button class=btn btn-info><a routerLink="airline-list">Airline List</a></button>
+            <button class=btn btn-info><a routerLink="register-airline">Register Airline</a></button>
+            <button class=btn btn-info><a routerLink="flight">Manage Flight</a></button>
+            
+            <button class=btn btn-info><a routerLink="createFlight">Add Flight</a></button>
+            <button class=btn btn-info><a routerLink="searchFlight">Search Flights</a></button>
+            <button class=btn btn-info><a routerLink="booking-record">Booking Record</a></button>
+          
+           <button class=btn btn-info><a routerLink="cancel-booking">Cancel Booking Record</a></button>
+           <button class=btn btn-info><a routerLink="view-history">View Booking History</a></button>
+            
+        
+    </li>
+    </div>
+    
+    </nav>
+    <router-outlet></router-outlet>

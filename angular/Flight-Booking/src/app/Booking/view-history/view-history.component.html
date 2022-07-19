@@ -1,18 +1,18 @@
 
-<h1>Booking Record</h1>
+<h1>Booking History</h1>
 <div class="container">
     <div class="card">
         <div class="card -body">
 
 <mark >
-    PNR no: <input [value]="pnr" placeholder="Enter your PNR no" #element/>
+    Email Id : <input [value]="email" placeholder="Enter your email id" #element/>
     <br>
     <br>
-    <button class ="btn btn-primary" (click)="getBookingByPnr(element.value)">view ticket</button>
+    <button class ="btn btn-primary" (click)="viewHistory(element.value)">view records</button>
 
 </mark>
 
-<div *ngIf="b">
+<div *ngIf="bookingRecords.length>0">
     <table class="table table-responsive" align ="center" style="width: 80%" border="1">
         <thead>
             <th>PNR</th>
@@ -31,7 +31,7 @@
             
         </thead>
 <tbody>
-<tr *ngFor ="let b  ">
+<tr *ngFor ="let b of b of bookingRecords ">
 <td>{{b.pnr}}</td>
 <td>{{b.name}}</td>
 <td>{{b.email}}</td>

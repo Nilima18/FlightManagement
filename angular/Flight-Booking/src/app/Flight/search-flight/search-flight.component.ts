@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookingService } from 'src/app/service/booking.service';
 import { FlightService } from 'src/app/service/flight.service';
 
 @Component({
@@ -9,13 +10,14 @@ import { FlightService } from 'src/app/service/flight.service';
 })
 export class SearchFlightComponent implements OnInit {
 
-  constructor(private router: Router,private service:FlightService) { }
+  constructor(private route: ActivatedRoute,private router: Router,private service:FlightService,private bservice:BookingService) { }
 
   ngOnInit(): void {
   }
   flights:any[]=[];
   destination:string="";
   source:string="";
+  flightId:number=0
 
   getFlights(destination:any,source:any){
     this.service.searchFlights(destination,source)
@@ -25,6 +27,13 @@ export class SearchFlightComponent implements OnInit {
     })
 
 
+  }
+
+  bookTicket(id:any){
+    this.flightId=id;
+  
+    
+    this.router.navigate(['app-create-booking'],{queryParams:{number:this.flightId}});
   }
 
 }

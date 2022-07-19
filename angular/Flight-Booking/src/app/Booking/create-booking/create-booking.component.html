@@ -1,1 +1,62 @@
-<p>create-booking works!</p>
+<h1>Fill Booking Details:</h1>
+<div class="container" width="20">
+    <form [formGroup]="bookingForm" align="center">
+        
+           <div class="form-group"> 
+        <label for="name">Name: </label>
+          <input type="text" formControlName="name" placeholder="Enter your Name" name="name" size="50 " class="form-control"
+          ngModel>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" formControlName="email" placeholder="Enter your email" name="email" class="form-control"
+          ngModel>
+        </div>
+        <div class="form-group">
+            <label for="meal">Meal:</label>
+            <input type="meal" formControlName="meal" placeholder="Meal" name="meal" class="form-control"
+            ngModel>
+         
+       </div>
+       <div class="form-group">
+        <label for="seatNo">Number of seats:</label>
+        <input type="noOfSeat" formControlName="noOfSeat" placeholder="Enter No of seats" name="noOfSeat" class="form-control"
+        ngModel>
+     
+        </div>
+                <div formArrayName="passengers"  
+                *ngFor="let passenger of passengers.controls; let i = index;">  
+                <div [formGroupName]="i">  
+                  <input formControlName="name" name ="name" placeholder="Enter your name">  
+                  <input formControlName="age" name ="age" placeholder="Age">  
+                  <input formControlName="gender" name ="gender" placeholder="Gender">  
+                  <input formControlName="seatNo" name ="seatNo" placeholder="Seat Number">  
+                </div>  
+              </div>  
+              
+              <button (click)="addPassenger()">Add Passengers</button>       
+          <div>
+            <button (click)="onSubmit()" class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+        </div>
+
+
+
+
+
+               
+
+
+
+
+
+           
+
+       
+
+
+    
+
+

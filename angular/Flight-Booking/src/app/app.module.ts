@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -19,6 +19,10 @@ import { RegisterAirlineComponent } from './airline/register-airline/register-ai
 import { UpdateAirlineComponent } from './airline/update-airline/update-airline.component';
 import { AirlineComponent } from './airline/airline/airline.component';
 import { AirlineListComponent } from './airline/airline-list/airline-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookingConfirmationComponent } from './booking/booking-confirmation/booking-confirmation.component';
+import { BookingCancelledComponent } from './booking/booking-cancelled/booking-cancelled.component';
+import { ViewHistoryComponent } from './booking/view-history/view-history.component';
 
 
 @NgModule({
@@ -36,6 +40,10 @@ import { AirlineListComponent } from './airline/airline-list/airline-list.compon
     UpdateAirlineComponent,
     AirlineComponent,
     AirlineListComponent,
+    BookingConfirmationComponent,
+   
+    BookingCancelledComponent,
+        ViewHistoryComponent,
     
   ],
   imports: [
@@ -44,7 +52,10 @@ import { AirlineListComponent } from './airline/airline-list/airline-list.compon
     FormsModule,
     ReactiveFormsModule,
 
-    HttpClientModule
+    HttpClientModule,
+
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

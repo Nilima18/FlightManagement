@@ -1,13 +1,21 @@
-<h1>Search Flights</h1>
+ <div id="header">
+                    <h1>Get Your Flight</h1>
+                </div>
 <div class="container">
     <div class="card">
         <div class="card -body">
 
 <mark >
-    Arrival City : <input [value]="destination" placeholder="Enter departure city" #element/>
-    Departure City : <input  [value]="source" placeholder="Enter arrival city" #element1/>
-<br>
-    <button (click)="getFlights(element.value,element1.value)">Search</button>
+    <div>
+    Arrival CIty :  <input [value]="destination" placeholder="Enter Arrival city" #element>
+
+    </div>
+    <br>
+    <div>
+    Departure City : <input  [value]="source" placeholder="Enter Departure city" #element1/>
+    </div>
+    <br>
+    <button class ="btn btn-primary" (click)="getFlights(element.value,element1.value)">Search Flights</button>
 
 </mark>
 <div *ngIf="flights.length > 0">
@@ -31,7 +39,7 @@
 <td>{{flight.departure_city}}</td>
 <td>{{flight.departure_time}}</td>
 <td>{{flight.price}}</td>
-<button>Book</button>
+<button (click)="bookTicket(flight.id)">Book</button>
 </tr>
 
 </tbody>
